@@ -1,0 +1,46 @@
+This file describes the step-by-step process to create the Getting and Cleaning Data project assignment.
+
+Data Source:
+The site where is data was obtained
+http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones
+Data for the Project is available at
+	https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+Getting data from source:
+	Get the data from the source above and store it in home directory\data
+	Note: (The source is a ZIP file, so it is important to extract it)
+ 
+run_analysis.R script performs the following steps to clean the sample data and generate two files merged.txt and data_with_mean.txt
+
+1.	Set the working directory to Home directory\Data
+
+2.	Get the required files
+	a.	Read X_train.txt, y_train.txt and subject.txt files from /data/train and store them in Xtrain.Data, ytrain.Data and subtrain.Data variables respectively.
+	b.	Read X_test.txt, y_test.txt and subject_test.txt files from /data/test and store them in Xtest.Data, ytest.Data and subtest.Data variables respectively.
+
+3.	Join Data
+	a.	Join data of train and test variables for each X, y and Subject and store them in join.XData, join.yData and join.SubData variables
+	b.	Name the join.SubData column to “subject”
+
+4.	Extract only mean and standard deviation from the features
+	a.	Get the all the possible features from data/features.txt and store them in features variables
+	b.	Extract the indices of only Mean and Standard deviation features
+	c.	Extract only relevant features from join.XData variable and store them in join.XData
+	d.	Name the columns to the relevant features.
+	e.	Clean the feature data by removing the “-” and make mean and std first character capital
+
+5.	Uses descriptive activity names for the activities
+	a.	Get the all the subject activities from data/activity_labels.txt and store them in activity variables
+	b.	Remove “_” from the second column (activitylabels)
+	c.	Transform the values of join.yData according to the activity data frame
+	d.	Name the join.yData as “activity” 
+
+6.	Create and store tidy data set
+	a.	Combine all datasets (join.subData, join.yData and join.XData) once all data sets are cleaned up into a tidyData variable
+	b.	Write the newly created tidyData data frame out to the home directory and named as tidydata.txt  
+
+7.	Create tidy data set with the average of each included variable for each activity and each subject.
+	a.	Group the subject and activity to calculate the Mean value for all included variables and store them in tidyData_WithMean data frame
+	b.	Write the results out to the tidyData_Wtihmeans.txt file with no row names in working directory 
+
+
